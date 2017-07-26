@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	body{
+		margin: 0;padding: 0;
+	}
+		.content{
+			width: 400px;
+			height: 800px;
+			margin: auto;
+			overflow: none;
+			position: relative;
+		}
+		.content>img{
+			width: 400px;
+			height: 800px;
+		}
+		.footer{
+
+			width: 87%;
+			height: 68px;
+			background: #eee;
+			position: absolute;
+			bottom: 14%;
+			left: 6%;
+
+		}
+        .footer>img{
+           width: 14%;height: 50px;
+           position: absolute;
+           left:2%;bottom: 10%;
+           border-radius: 10px;
+           border: 1px solid #ddd;
+       	   cursor: pointer;
+            
+       }
+       .footer>#text1{
+       	width: 165px;
+       	height: 40px;
+       	position: absolute;
+       	left: 18%;
+       	bottom: 13%;
+        border-radius: 10px;
+        font-size: 20px; 
+
+       }
+        .footer>#btn1{
+        width: 50px;
+       	height: 40px;
+       	position: absolute;
+       	right: 17%;
+       	bottom: 18%; 
+        border-radius: 10px;
+        cursor: pointer; 
+
+        }
+        .footer>#btn2{
+        width: 50px;
+       	height: 40px;
+       	position: absolute;
+       	right: 1%;
+       	bottom: 18%; 
+        border-radius: 10px;
+        cursor: pointer;
+
+        }
+        #text2{
+        	width: 338px;
+        	height: 515px;
+        	position: absolute;
+        	left: 8%;
+        	top: 13%;
+        	border-radius: 4px;
+        	overflow: scroll;
+        
+        	font-size: 50px;
+        }
+        ::-webkit-scrollbar {
+        	display: none;/*隐藏滚轮*/
+        }
+        /*头像*/
+        .img1{
+           width: 40px;
+       	   height: 40px;
+       	   margin-left:3px;
+       	   float: left;
+       	   cursor: pointer;
+        }
+        .img2{
+           width: 40px;
+       	   height: 40px;
+       	   margin-right:3px;
+       	   float: right;
+       	   cursor: pointer;
+
+        }
+        .right{
+        	float: right;
+        	
+        }
+        .left{
+        	float:left;
+        	
+        }
+        /*对话框*/
+        .le{  
+            width:250px;
+            margin:15px 0;  
+            float:left;  
+              
+        }  
+        .ri{  
+            width:250px;                
+            margin:15px 0;  
+            float:right;  
+        }
+        /*文字*/
+        .p1{ 
+        	display: inline-block;
+            font-size: 28px;  
+            background: rgb(252,74,74);  
+            margin-left:50px;  
+            margin-top:-40px;  
+            padding:4px;  
+            border-radius:5px;  
+            float:left;  
+            clear:both;
+            word-break:break-all;    
+        } 
+        .p2{  
+        	display: inline-block;
+            font-size: 28px;  
+            background: #b2e281;  
+            margin-right:50px;  
+            margin-top:-40px;  
+            padding:4px;  
+            border-radius:5px;  
+            float:right;  
+            clear:both;
+            word-break:break-all;    
+        }  
+	</style>
+</head>
+<body>
+	<div class="content">
+	    <div id="text2" class="right left">
+	    </div>
+		<img src="bg.png">
+		<div class="footer">
+			<img src="btn1.png" id="img1">
+			<input type="text" id="text1" value="" >
+			<input type="button" id="btn1" value="确认">
+			<input type="button" id="btn2" value="清空">
+         </div>
+	</div>
+	<script type="text/javascript">
+		var text2=document.getElementById('text2');
+		var img1=document.getElementById('img1');
+		var text1=document.getElementById('text1');
+		var btn1=document.getElementById('btn1');
+		var btn2=document.getElementById('btn2');
+		
+		var flag=1;
+		img1.onclick=function(){
+			
+			if (flag==1) {
+				img1.src="btn2.png";
+				flag=0;
+			}else{
+				img1.src="btn1.png";
+				flag=1;
+			}
+		}
+		btn1.onclick=function(){
+
+            //如果输入框的值为空
+            if(flag==1){
+            	
+            	if(text1.value==""){
+            		text2.innerHTML+="";
+            	}else{
+            		
+            		text2.innerHTML+='<div class="ri"><img src="btn1.png" class="img2">'+'<div class="p2">'+text1.value+'</div></div>'+"<br>";
+            	    text1.value='';
+            	    // text2.className='right ';
+
+            	}
+               
+            }else{
+        	    
+            	if(text1.value==""){
+        		  text2.innerHTML+="";
+        	}else{
+               
+        		text2.innerHTML+='<div class="le"><img src="btn2.png" class="img1"><div class="p1">'+text1.value+'</div></div>'+"<br>";
+        		// text2.className='left ';
+            	// text2.style.background="green";
+            	text1.value='';
+        	}
+          
+        }
+
+    } 
+        btn2.onclick=function(){
+        	text1.value='';
+        	text2.innerHTML='';
+        }
+
+
+        btn1.onkeydown=function(ev){
+          ev=ev||window.event;
+          if ((ev.keyCode==13)) {
+            //如果输入框的值为空
+            if(flag==1){
+              
+              if(text1.value==""){
+                text2.innerHTML+="";
+              }else{
+                
+                text2.innerHTML+='<div class="ri"><img src="btn1.png" class="img2">'+'<div class="p2">'+text1.value+'</div></div>'+"<br>";
+                  text1.value='';
+                  // text2.className='right ';
+
+              }
+               
+            }else{
+              
+              if(text1.value==""){
+              text2.innerHTML+="";
+          }else{
+               
+            text2.innerHTML+='<div class="le"><img src="btn2.png" class="img1"><div class="p1">'+text1.value+'</div></div>'+"<br>";
+            // text2.className='left ';
+              // text2.style.background="green";
+              text1.value='';
+          }
+          
+        }
+}
+    } 
+        btn2.onkeydown=function(ev){
+          ev=ev||window.event;
+          if ((ev.keyCode==13)) {
+          text1.value='';
+          text2.innerHTML='';
+        }
+        }
+       
+	</script>
+</body>
+</html>
